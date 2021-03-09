@@ -455,13 +455,17 @@ class DemoAgent:
         return True
 
     async def get_id_and_token(self, wallet_name):
-        wallet = await self.agency_admin_GET(f"/multitenancy/wallets?wallet_name={wallet_name}")
+        wallet = await self.agency_admin_GET(
+            f"/multitenancy/wallets?wallet_name={wallet_name}"
+        )
         wallet_id = wallet["results"][0]["wallet_id"]
 
-        wallet = await self.agency_admin_POST(f"/multitenancy/wallet/{wallet_id}/token", {})
+        wallet = await self.agency_admin_POST(
+            f"/multitenancy/wallet/{wallet_id}/token", {}
+        )
         token = wallet["token"]
 
-        return { "id": wallet_id, "token": token }
+        return {"id": wallet_id, "token": token}
 
     def handle_output(self, *output, source: str = None, **kwargs):
         end = "" if source else "\n"
