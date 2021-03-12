@@ -85,7 +85,7 @@ do
     continue
   ;;
   --bg)
-    if [ "${AGENT}" = "alice" ] || [ "${AGENT}" = "faber" ] || [ "${AGENT}" = "acme" ]; then
+    if [ "${AGENT}" = "clockd" ] || [ "${AGENT}" = "cloud" ] || [ "${AGENT}" = "acme" ]; then
       DOCKER_OPTS="-d"
       echo -e "\nRunning in ${AGENT} in the background. Note that you cannot use the command line console in this mode."
       echo To see the logs use: \"docker logs ${AGENT}\".
@@ -93,7 +93,7 @@ do
       echo To stop the agent, use: \"docker stop ${AGENT}\". The docker environment will
       echo -e "be removed on stop.\n\n"
     else
-      echo The "bg" option \(for running docker in detached mode\) is only for agents Alice, Faber and Acme.
+      echo The "bg" option \(for running docker in detached mode\) is only for agents Clockd, Cloud and Acme.
       echo Ignoring...
     fi
     continue
@@ -102,7 +102,7 @@ do
     cat <<EOF
 
 Usage:
-   ./demo_run <agent> [OPTIONS]
+   ./run_agent <agent> [OPTIONS]
 
    - <agent> is one of alice, clockd, cloud, faber, acme, performance.
    - Options:
@@ -153,7 +153,7 @@ else
 fi
 
 echo "Preparing agent image..."
-docker build -q -t faber-alice-demo -f ../docker/Dockerfile.demo .. || exit 1
+docker build -t faber-alice-demo -f ../docker/Dockerfile.demo .. || exit 1
 
 if [ ! -z "$DOCKERHOST" ]; then
   # provided via APPLICATION_URL environment variable

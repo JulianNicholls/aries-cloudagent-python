@@ -189,3 +189,5 @@ _build/
 
 # Open API build
 open-api/.build
+
+clockd-genesis.txt

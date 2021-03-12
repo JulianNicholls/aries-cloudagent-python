@@ -94,7 +94,7 @@ async def default_genesis_txns():
                 async with session.get(LEDGER_URL.rstrip("/") + "/genesis") as resp:
                     genesis = await resp.text()
         else:
-            with open("local-genesis.txt", "r") as genesis_file:
+            with open("clockd-genesis.txt", "r") as genesis_file:
                 genesis = genesis_file.read()
     except Exception:
         LOGGER.exception("Error loading genesis transactions:")
